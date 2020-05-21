@@ -1,38 +1,98 @@
-.App {
-  text-align: center;
+/* Header */
+.jumbotron {
+  background-color: #fff;
+  padding: 2rem 2rem;
+  margin-bottom: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.jumbotron-header {
+  background-color: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* SearchBar */
+.search {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 20%;
+  margin: 0 auto;
 }
 
-.App-link {
-  color: #61dafb;
+.search > Input {
+  margin-right: -32px;
+  padding-right: 32px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search > img {
+  position: relative;
+  height: 30px;
+  width: 30px;
 }
+
+/* AddShortcut */
+.addShortcut {
+  width: 60%;
+  margin: 0 auto 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.formElement {
+  width: 40%;
+}
+
+.formBtn {
+  width: 15%;
+  align-self: flex-end;
+}
+
+/* Shortcuts */
+.shortcuts {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  justify-content: left;
+}
+
+/* Shortcut */
+.shortcutCard {
+  flex: 1 1 100%;
+  margin: 10px;
+  max-width: 300px;
+}
+
+.footerBtn {
+  width: 299px;
+  border: 0;
+  border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
+  color: #6c757d;
+}
+
+.card-footer {
+  background-color: #fff;
+  padding: 0;
+}
+
+/* Hover on the card */
+.shortcutCard:hover {
+  border-color: #17a2b8;
+}
+
+.shortcutCard:hover > #cardFooter {
+  border-top: 1px solid #17a2b8;
+}
+
+/* After clicking on edit */
+#editShortcutCard {
+  border-color: #6c757d;
+}
+
+#editCardFooter {
+  border-top: 1px solid #6c757d;
+}
+
+.footerBtn:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
