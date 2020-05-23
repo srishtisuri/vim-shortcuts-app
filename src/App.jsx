@@ -35,16 +35,18 @@ const initialShortcuts = [
 
 const App = () => {
   const [shortcuts, setShortcuts] = useState(initialShortcuts);
+  const [shortcutSuggestions, setShortcutSuggestions] = useState(shortcuts);
 
   const addShortcut = (command, description) => {
-    setShortcuts([
+    const newShortcuts = [
       ...shortcuts,
       {
         id: shortcuts.length + 1,
         command: command,
         description: description,
       },
-    ]);
+    ];
+    setShortcuts(newShortcuts);
   };
 
   const removeShortcut = (id) => {
@@ -57,13 +59,30 @@ const App = () => {
     );
   };
 
+  const fieldMatch = (field, value) => {
+    return value
+      .toLowerCase()
+      .split(" ")
+      .every((v) => field.toLowerCase().includes(v));
+  };
+
+  const search = (e) => {
+    setShortcutSuggestions(
+      shortcuts.filter(
+        (s) =>
+          fieldMatch(s.command, e.target.value) ||
+          fieldMatch(s.description, e.target.value)
+      )
+    );
+  };
+
   return (
     <div>
-      <TopNav shortcuts={shortcuts} />
+      <TopNav search={search} shortcuts={shortcuts} />
       <Header />
       <AddShortcut shortcuts={shortcuts} addShortcut={addShortcut} />
       <Shortcuts
-        shortcuts={shortcuts}
+        shortcuts={shortcutSuggestions}
         removeShortcut={removeShortcut}
         editShortcut={editShortcut}
       />

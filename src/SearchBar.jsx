@@ -3,11 +3,9 @@ import { Input } from "reactstrap";
 import SearchIcon from "./content/search-icon.png";
 
 const SearchBar = (props) => {
-  const search = {};
-
   return (
     <div className="search">
-      <Input placeholder="Search..." onChange={(e) => search()}></Input>
+      <Input placeholder="Search..." onChange={props.search}></Input>
       <img href="" src={SearchIcon} alt="" />
     </div>
   );
