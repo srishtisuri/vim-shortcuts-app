@@ -18,11 +18,7 @@ const TopNav = (props) => {
     <div>
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/">vimshortcuts</NavbarBrand>
-        <SearchBar
-          className="justify-content-end"
-          shortcuts={props.shortcuts}
-          search={props.search}
-        />
+        <SearchBar className="justify-content-end" search={props.search} />
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar></Nav>

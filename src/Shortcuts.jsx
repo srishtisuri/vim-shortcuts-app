@@ -1,27 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Shortcut from "./Shortcut";
 
-const Shortcuts = (props) => {
-  // const colors = [
-  //   "#6c757d",
-  //   "#007bff",
-  //   "#28a745",
-  //   "#17a2b8",
-  //   "#ffc107",
-  //   "#dc3545 ",
-  // ];
-
-  // color={colors[Math.floor(Math.random() * colors.length)]}
-
-  const shortcuts = props.shortcuts.map((s) => (
-    <Shortcut
-      key={s.id}
-      shortcut={s}
-      removeShortcut={props.removeShortcut}
-      editShortcut={props.editShortcut}
-    />
-  ));
-  return <div className="shortcuts">{shortcuts}</div>;
+const Shortcuts = () => {
+  const shortcuts = useSelector((state) => state.shortcut);
+  const shortcutsToRender = [
+    ...shortcuts.map((s) => <Shortcut key={s.id} shortcut={s} />),
+  ];
+  return <div className="shortcuts">{shortcutsToRender}</div>;
 };
 
 export default Shortcuts;

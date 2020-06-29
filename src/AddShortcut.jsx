@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Button, Label, Input } from "reactstrap";
 import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import { addShortcut } from "./actions/shortcutActions";
 
 const AddShortcut = (props) => {
+  const dispatch = useDispatch();
+  const shortcuts = useSelector((state) => state.shortcuts);
   const [command, setCommand] = useState("");
   const [description, setDescription] = useState("");
 
@@ -14,7 +18,7 @@ const AddShortcut = (props) => {
           type="text"
           value={command}
           onChange={() => {}}
-          onKeyUp={(e) => setCommand((command + " " + e.key).trim())}
+          onKeyDown={(e) => setCommand((command + " " + e.key).trim())}
         />
       </div>
       <div className="formElement">
@@ -29,7 +33,13 @@ const AddShortcut = (props) => {
         className="formBtn"
         color="info"
         onClick={() => {
-          props.addShortcut(command, description);
+          dispatch(
+            addShortcut({
+              id: shortcuts.length + 1,
+              command: command,
+              description: description,
+            })
+          );
           setCommand("");
           setDescription("");
         }}

@@ -9,23 +9,37 @@ import {
   CardFooter,
   Input,
 } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addShortcut,
+  editShortcut,
+  removeShortcut,
+} from "./actions/shortcutActions";
 
 const Shortcut = (props) => {
+  const dispatch = useDispatch();
   const [command, setCommand] = useState(props.shortcut.command);
   const [description, setDescription] = useState(props.shortcut.description);
   const [isEdit, setIsEdit] = useState(false);
 
   const onRemove = () => {
-    props.removeShortcut(props.shortcut.id);
+    dispatch(removeShortcut(props.shortcut.id));
   };
 
   const onEdit = () => {
     setIsEdit(!isEdit);
-    setCommand("");
+    // setCommand("");
   };
 
   const onSave = () => {
-    props.editShortcut(props.shortcut.id, command, description);
+    dispatch({
+      type: "EDIT_SHORTCUT",
+      payload: {
+        id: props.shortcut.id,
+        command: command,
+        description: description,
+      },
+    });
     setIsEdit(!isEdit);
   };
 
@@ -49,6 +63,7 @@ const Shortcut = (props) => {
           id="editBtn"
           onClick={onEdit}
         >
+          {" "}
           Edit
         </Button>
       </CardFooter>
@@ -62,7 +77,7 @@ const Shortcut = (props) => {
           <Input
             value={command}
             onChange={() => {}}
-            onKeyUp={(e) => setCommand((command + " " + e.key).trim())}
+            onKeyDown={(e) => setCommand((command + " " + e.key).trim())}
           ></Input>
         </CardTitle>
         <DropdownItem divider />
