@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import {
   Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
   Nav,
   NavbarText,
+  NavbarToggler,
 } from "reactstrap";
 import SearchBar from "./SearchBar";
 

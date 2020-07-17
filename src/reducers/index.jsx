@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import shortcut from "./shortcutReducer";
+import shortcuts from "./shortcutsReducer";
+import searchText from "./searchReducer";
 
 export default combineReducers({
-  shortcut: shortcut,
+  shortcuts,
+  searchText,
 });

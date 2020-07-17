@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Button, Label, Input } from "reactstrap";
-import "./App.css";
+import { Button, Label, Input, InputGroup, InputGroupAddon } from "reactstrap";
+import "../App.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addShortcut } from "./actions/shortcutActions";
+import { addShortcut } from "../actions/shortcutsActions";
 
 const AddShortcut = (props) => {
   const dispatch = useDispatch();
@@ -14,20 +14,32 @@ const AddShortcut = (props) => {
     <div className="addShortcut">
       <div className="formElement">
         <Label>Shortcut</Label>
-        <Input
-          type="text"
-          value={command}
-          onChange={() => {}}
-          onKeyDown={(e) => setCommand((command + " " + e.key).trim())}
-        />
+        <InputGroup>
+          <Input
+            value={command}
+            onChange={() => {}}
+            onKeyDown={(e) => setCommand((command + " " + e.key).trim())}
+          />
+          <InputGroupAddon addonType="append">
+            <Button id="clearBtn" onClick={() => setCommand("")}>
+              Clear
+            </Button>
+          </InputGroupAddon>
+        </InputGroup>
       </div>
       <div className="formElement">
         <Label>Description</Label>
-        <Input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <InputGroup>
+          <Input
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <InputGroupAddon addonType="append">
+            <Button id="clearBtn" onClick={() => setDescription("")}>
+              Clear
+            </Button>
+          </InputGroupAddon>
+        </InputGroup>
       </div>
       <Button
         className="formBtn"

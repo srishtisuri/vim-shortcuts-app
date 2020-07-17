@@ -4,14 +4,15 @@ import {
   REMOVE_SHORTCUT,
 } from "../actions/actionTypes";
 
-export function addShortcut(payload) {
+export const addShortcut = (payload) => {
   return { type: ADD_SHORTCUT, payload };
-}
+};
 
-export function editShortcut(payload) {
+export const editShortcut = (payload) => {
   return { type: EDIT_SHORTCUT, payload };
-}
+};
 
-export function removeShortcut(payload) {
+export const removeShortcut = (payload) => {
   return { type: REMOVE_SHORTCUT, payload };
-}
+};
+

@@ -8,13 +8,11 @@ import {
   CardText,
   CardFooter,
   Input,
+  InputGroup,
+  InputGroupAddon,
 } from "reactstrap";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addShortcut,
-  editShortcut,
-  removeShortcut,
-} from "./actions/shortcutActions";
+import { useDispatch } from "react-redux";
+import { removeShortcut, editShortcut } from "../actions/shortcutsActions";
 
 const Shortcut = (props) => {
   const dispatch = useDispatch();
@@ -28,22 +26,14 @@ const Shortcut = (props) => {
 
   const onEdit = () => {
     setIsEdit(!isEdit);
-    // setCommand("");
   };
 
   const onSave = () => {
-    dispatch({
-      type: "EDIT_SHORTCUT",
-      payload: {
-        id: props.shortcut.id,
-        command: command,
-        description: description,
-      },
-    });
+    dispatch(editShortcut({ id: props.shortcut.id, command, description }));
     setIsEdit(!isEdit);
   };
 
-  const shortcut = (
+  const shortcutItem = (
     <Card className="shortcutCard">
       <CardBody>
         <CardTitle tag="h4">
@@ -70,15 +60,22 @@ const Shortcut = (props) => {
     </Card>
   );
 
-  const editShortcut = (
+  const editShortcutItem = (
     <Card className="shortcutCard" id="editShortcutCard">
       <CardBody>
         <CardTitle tag="h4">
-          <Input
-            value={command}
-            onChange={() => {}}
-            onKeyDown={(e) => setCommand((command + " " + e.key).trim())}
-          ></Input>
+          <InputGroup>
+            <Input
+              value={command}
+              onChange={() => {}}
+              onKeyDown={(e) => setCommand((command + " " + e.key).trim())}
+            />
+            <InputGroupAddon addonType="append">
+              <Button outline id="clearBtn" onClick={() => setCommand("")}>
+                Clear
+              </Button>
+            </InputGroupAddon>
+          </InputGroup>
         </CardTitle>
         <DropdownItem divider />
         <Input
@@ -100,7 +97,7 @@ const Shortcut = (props) => {
     </Card>
   );
 
-  return <> {isEdit ? editShortcut : shortcut} </>;
+  return <> {isEdit ? editShortcutItem : shortcutItem} </>;
 };
 
 export default Shortcut;

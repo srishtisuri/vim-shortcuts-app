@@ -61,6 +61,11 @@
   max-width: 300px;
 }
 
+#clearBtn {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
 .footerBtn {
   width: 299px;
   border: 0;
@@ -95,4 +100,3 @@
   box-shadow: none !important;
   outline: none !important;
 }
-
