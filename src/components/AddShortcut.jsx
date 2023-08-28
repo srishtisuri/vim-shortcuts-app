@@ -22,7 +22,7 @@ const AddShortcut = (props) => {
   const handleOnClick = () => {
     dispatch(
       addShortcut({
-        id: shortcuts.length + 1,
+        id: shortcuts.length + 1 || 1,
         command: command,
         description: description,
       })
