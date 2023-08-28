@@ -20,15 +20,18 @@ const AddShortcut = (props) => {
   const handleDescClear = () => setDescription("");
 
   const handleOnClick = () => {
-    dispatch(
-      addShortcut({
-        id: shortcuts.length + 1 || 1,
-        command: command,
-        description: description,
-      })
-    );
-    setCommand("");
-    setDescription("");
+    const payload = {
+      id: shortcuts.length + 1 || 1,
+      command: command,
+      description: description,
+    };
+    if (command && description) {
+      dispatch(addShortcut(payload));
+      setCommand("");
+      setDescription("");
+    } else {
+      alert("Please enter a shortcut and a description");
+    }
   };
 
   return (

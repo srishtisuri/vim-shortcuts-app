@@ -34,14 +34,17 @@ const Shortcut = ({ shortcut }) => {
   const handleOnEdit = () => setIsEdit(!isEdit);
 
   const handleOnSave = () => {
-    dispatch(
-      editShortcut({
-        id: shortcut.id,
-        command: command.toLowerCase(),
-        description,
-      })
-    );
-    setIsEdit(!isEdit);
+    const payload = {
+      id: shortcut.id,
+      command: command.toLowerCase(),
+      description,
+    };
+    if (command && description) {
+      dispatch(editShortcut(payload));
+      setIsEdit(!isEdit);
+    } else {
+      alert("Please enter a shortcut and description");
+    }
   };
 
   const shortcutItem = (
