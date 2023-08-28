@@ -14,22 +14,33 @@ import {
 import { useDispatch } from "react-redux";
 import { removeShortcut, editShortcut } from "../actions/shortcutsActions";
 
-const Shortcut = (props) => {
+const Shortcut = ({ shortcut }) => {
   const dispatch = useDispatch();
-  const [command, setCommand] = useState(props.shortcut.command);
-  const [description, setDescription] = useState(props.shortcut.description);
+  const [command, setCommand] = useState(shortcut.command);
+  const [description, setDescription] = useState(shortcut.description);
   const [isEdit, setIsEdit] = useState(false);
 
-  const onRemove = () => {
-    dispatch(removeShortcut(props.shortcut.id));
+  const handleOnRemove = () => {
+    dispatch(removeShortcut(shortcut.id));
   };
 
-  const onEdit = () => {
-    setIsEdit(!isEdit);
-  };
+  const handleCmdOnClear = () => setCommand("");
 
-  const onSave = () => {
-    dispatch(editShortcut({ id: props.shortcut.id, command, description }));
+  const handleDescOnChange = (e) => setDescription(e.target.value);
+
+  const handleOnKeyDown = (e) =>
+    setCommand((command + " " + e.key).trim().toLowerCase());
+
+  const handleOnEdit = () => setIsEdit(!isEdit);
+
+  const handleOnSave = () => {
+    dispatch(
+      editShortcut({
+        id: shortcut.id,
+        command: command.toLowerCase(),
+        description,
+      })
+    );
     setIsEdit(!isEdit);
   };
 
@@ -38,7 +49,7 @@ const Shortcut = (props) => {
       <CardBody>
         <CardTitle tag="h4">
           {command}
-          <button className="close" onClick={onRemove} aria-label="Close">
+          <button className="close" onClick={handleOnRemove} aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </CardTitle>
@@ -51,9 +62,8 @@ const Shortcut = (props) => {
           color="info"
           className="footerBtn"
           id="editBtn"
-          onClick={onEdit}
+          onClick={handleOnEdit}
         >
-          {" "}
           Edit
         </Button>
       </CardFooter>
@@ -65,23 +75,16 @@ const Shortcut = (props) => {
       <CardBody>
         <CardTitle tag="h4">
           <InputGroup>
-            <Input
-              value={command}
-              onChange={() => {}}
-              onKeyDown={(e) => setCommand((command + " " + e.key).trim())}
-            />
+            <Input value={command} onKeyDown={handleOnKeyDown} />
             <InputGroupAddon addonType="append">
-              <Button outline id="clearBtn" onClick={() => setCommand("")}>
+              <Button outline id="clearBtn" onClick={handleCmdOnClear}>
                 Clear
               </Button>
             </InputGroupAddon>
           </InputGroup>
         </CardTitle>
         <DropdownItem divider />
-        <Input
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        ></Input>
+        <Input value={description} onChange={handleDescOnChange}></Input>
       </CardBody>
       <CardFooter id="editCardFooter">
         <Button
@@ -89,7 +92,7 @@ const Shortcut = (props) => {
           color="secondary"
           className="footerBtn"
           id="saveBtn"
-          onClick={onSave}
+          onClick={handleOnSave}
         >
           Save
         </Button>

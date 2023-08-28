@@ -10,18 +10,35 @@ const AddShortcut = (props) => {
   const [command, setCommand] = useState("");
   const [description, setDescription] = useState("");
 
+  const handleCmdOnKeyDown = (e) =>
+    setCommand((command + " " + e.key).trim().toLowerCase());
+
+  const handleDescOnChange = (e) => setDescription(e.target.value);
+
+  const handleCmdClear = () => setCommand("");
+
+  const handleDescClear = () => setDescription("");
+
+  const handleOnClick = () => {
+    dispatch(
+      addShortcut({
+        id: shortcuts.length + 1,
+        command: command,
+        description: description,
+      })
+    );
+    setCommand("");
+    setDescription("");
+  };
+
   return (
     <div className="addShortcut">
       <div className="formElement">
         <Label>Shortcut</Label>
         <InputGroup>
-          <Input
-            value={command}
-            onChange={() => {}}
-            onKeyDown={(e) => setCommand((command + " " + e.key).trim())}
-          />
+          <Input value={command} onKeyDown={handleCmdOnKeyDown} />
           <InputGroupAddon addonType="append">
-            <Button id="clearBtn" onClick={() => setCommand("")}>
+            <Button id="clearBtn" onClick={handleCmdClear}>
               Clear
             </Button>
           </InputGroupAddon>
@@ -30,32 +47,15 @@ const AddShortcut = (props) => {
       <div className="formElement">
         <Label>Description</Label>
         <InputGroup>
-          <Input
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          <Input value={description} onChange={handleDescOnChange} />
           <InputGroupAddon addonType="append">
-            <Button id="clearBtn" onClick={() => setDescription("")}>
+            <Button id="clearBtn" onClick={handleDescClear}>
               Clear
             </Button>
           </InputGroupAddon>
         </InputGroup>
       </div>
-      <Button
-        className="formBtn"
-        color="info"
-        onClick={() => {
-          dispatch(
-            addShortcut({
-              id: shortcuts.length + 1,
-              command: command,
-              description: description,
-            })
-          );
-          setCommand("");
-          setDescription("");
-        }}
-      >
+      <Button className="formBtn" color="info" onClick={handleOnClick}>
         Add
       </Button>
     </div>
