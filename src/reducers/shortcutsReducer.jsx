@@ -46,7 +46,7 @@ import {
 //     description: "Search for project and open in new window",
 //   },
 // ];
-const defaultState = JSON.parse(localStorage.getItem("shortcuts"));
+const defaultState = JSON.parse(localStorage.getItem("shortcuts")) || [];
 
 export default (state = defaultState, action) => {
   switch (action.type) {
