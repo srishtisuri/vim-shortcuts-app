@@ -1,68 +1,43 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# vim-shortcuts-app
 
-## Available Scripts
+This web application was built as one of my very first personal react projects. It was inspired by my adoption of a personalised vim setup for my day-to-day programming work. It is a simple React/Redux application. 
 
-In the project directory, you can run:
+srishtisuri.github.io/vim-shortcuts-app/
 
-### `yarn start`
+## How It Works
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+vim-shortcuts-app is a simplistic application to capture keyboard shortcuts for personal vim setups.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Shortcut
+The 'Shortcuts' field captures keyboard input from the user to generate a stringified "command". Spaces are added automatically between the keystrokes for readability.
 
-### `yarn test`
+### Description
+Each keyboard shortcut is accompanied by a description so that each shortcut can be referenced at a glance.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Clear
+Both the 'Shortcut' and 'Description' input fields have a 'Clear' button. This was initially built for the 'Shortcut' field, given the complexities of keyboard input - there needed to be an effective way to clear/edit the text because backspace would be captured as part of the command. 
 
-### `yarn build`
+It was introduced to both fields for consistency and ease of use in each case. It also exists in the 'Edit' state of the individial shortcuts.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Edit
+Sometimes we update the keybindings in our personal vim setups - it made sense to offer 'Edit' functionality so that commands and descriptions alike could be updated.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Local Storage
+There needed to be a simplistic way to persist the state of the application and preserve the shortcuts that a user would have created. These shortcuts would obviously also be personalised and would need to be specific to each user. For these reasons, local storage was selected as a tactical solution - it was quick and straightforward to implement and satisfied the requirements, allowing the app to be rounded off.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Local storage obviously has some drawbacks - if a user clears their browser cache, their shortcuts will be deleted. There are a number of future enhancements related to application state that will hopefully be implemented one day. Read further for some ideas.
 
-### `yarn eject`
+### Search
+The app has a basic filtration system that parses both shortcuts and descriptions to return specific items. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Future Improvement Ideas
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Add authentication layer so that each user can login to their account to access their personalised shortcuts
+- Push shortcuts to database so that shortcuts can be persisted in a more robust manner (correlates to the idea above)
+- Build import feature to accept JSON file of keybindings to generate shortcut cards
+- Build export feature to export all shortcuts as JSON file of keybindings
+- Perform thorough npm audit
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Deployment
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+vim-shortcuts-app is deployed with the help of a tool called `gh-pages`. Predeploy and deploy scripts are set up in the root package.json which, when invoked (`yarn deploy`), run scripts from the `gh-pages` CLI. The source code is built and pushed to a branch called `gh-pages` in this repository. From there it is deployed to Github Pages.
