@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/vim-shortcuts-app/static/css/main.af9a888e.chunk.css",
+    "main.js": "/vim-shortcuts-app/static/js/main.d77ab97f.chunk.js",
+    "main.js.map": "/vim-shortcuts-app/static/js/main.d77ab97f.chunk.js.map",
+    "runtime-main.js": "/vim-shortcuts-app/static/js/runtime-main.f2bfa926.js",
+    "runtime-main.js.map": "/vim-shortcuts-app/static/js/runtime-main.f2bfa926.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/vim-shortcuts-app/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.081814eb.chunk.js": "/vim-shortcuts-app/static/js/2.081814eb.chunk.js",
+    "static/js/2.081814eb.chunk.js.map": "/vim-shortcuts-app/static/js/2.081814eb.chunk.js.map",
+    "index.html": "/vim-shortcuts-app/index.html",
+    "precache-manifest.dc3e7bd6fc2eb09884163d5e83e3a49e.js": "/vim-shortcuts-app/precache-manifest.dc3e7bd6fc2eb09884163d5e83e3a49e.js",
+    "service-worker.js": "/vim-shortcuts-app/service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "/vim-shortcuts-app/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.af9a888e.chunk.css.map": "/vim-shortcuts-app/static/css/main.af9a888e.chunk.css.map",
+    "static/js/2.081814eb.chunk.js.LICENSE.txt": "/vim-shortcuts-app/static/js/2.081814eb.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f2bfa926.js",
+    "static/css/2.af3c1da9.chunk.css",
+    "static/js/2.081814eb.chunk.js",
+    "static/css/main.af9a888e.chunk.css",
+    "static/js/main.d77ab97f.chunk.js"
+  ]
+}
